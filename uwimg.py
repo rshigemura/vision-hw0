@@ -53,6 +53,9 @@ load_image_lib = lib.load_image
 load_image_lib.argtypes = [c_char_p]
 load_image_lib.restype = IMAGE
 
+scale_image = lib.scale_image
+scale_image.argtypes = [IMAGE, c_int, c_float]
+
 def load_image(f):
     return load_image_lib(f.encode('ascii'))
 
@@ -61,10 +64,8 @@ save_image_lib.argtypes = [IMAGE, c_char_p]
 
 def save_image(im, f):
     return save_image_lib(im, f.encode('ascii'))
+    
 
 if __name__ == "__main__":
     im = load_image("data/dog.jpg")
     save_image(im, "hey")
-
-    
-
